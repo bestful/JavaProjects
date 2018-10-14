@@ -1,15 +1,17 @@
-﻿# MLOP_Task1-3
+﻿
+# MLOP_Task1-3
 Задачи:
  1. Быстрая сортировка студентов из csv файла по оценке (Студент, оценка)
  2. Выдача спиральной матрицы
  3. Ранжирование документов по слову
 
-## Пример
+## Пример использования
 
+	$ cd my-dist
 	$ java -jar "Solution.jar"
 	> ?
-	Commands: import find words exit task1 task2
-	> task1
+	Commands: import find words exit snake sorter
+	> sorter test.csv
 	1.csv
 	Last: Oleg, mark: -100
 	Last: Oksana, mark: 66
@@ -17,8 +19,7 @@
 	Last: Alena, mark: 88
 	Last: Petya, mark: 93
 	Last: Petya, mark: 100
-	> task2
-	7 5
+	> snake 7 5
 	1 2 3 4 5
 	20 21 22 23 6
 	19 32 33 24 7
@@ -53,3 +54,9 @@
 	  [between a wolf and a fox.txt, Cloak of the Forbidden End.txt, CLONE SHARINGAN.txt, Demonic Requiem.txt, Grim Reaper Kyo.txt, Hey There Foxy!.txt, It Takes One To Know One.txt, Kitsune no Kyuubi, Naruto no Kitsune.txt, kitsune's daughter.txt, KitsuneNin Sage!.txt, Kyuubi's Games.txt, Namikaze Legend.txt, Naruto and His Guardian Vixens.txt, Naruto the Battousai.txt, Naruto the Kyudaime Overlord.txt, Naruto The One.txt, Redemption of A Lone Wolf.txt, Say What!.txt, Shadow Ship.txt, The Art of Healing.txt, The Dark Road to the Otherside.txt, The Idiot's Awakening.txt], 2
 	  [A Forbiden Life leads to a Forbiden Love.txt, A Loving Heart, A Body of Steel.txt, Aria of the Moonless Night.txt, Battlesuit K.txt, Breaking the Kitsune.txt, Child of the Fox!.txt, Darkness Rising.txt, Demon Storm, Shinobi Rain.txt, Early Banishment.txt, Even Demons Can Love.txt, Feel the Beat.txt, Foxes and Wolves, Humans and Demons.txt, Frozen Darkness.txt, Guardian DeathAngel.txt, I Warned You.txt, Kage No Naruto.txt, Kitsune Kanshisha or Fox Guardian.txt, Kitsune Thief Naruto.txt, Kyuubi's Claim.txt, Maelstrom Ninja Scrolls.txt, Mercy Has Its Price.txt, Mother's love.txt, My new life.txt, NamikazeCest.txt, Nariko, My Sister.txt, Naruto and his Foxy Demon.txt, Naruto and the Timeskip.txt, Naruto Water Chronicles.txt, Naruto's Last Straw.txt, October 10th.txt, Pain of the Truth.txt, Purpose.txt, Red Rubies, Tainted Sapphire.txt, Rise of the Supernovas.txt, Savin' Me.txt, Shinobi Farmer.txt, Shrine in the Fog.txt, Story of the Ten Tailed Wolf.txt, Taming of a Kitsune.txt, The Demonic Siblings.txt, The Fox and and the Ninja.txt, The Itinerant Trader.txt, The Shifter.txt, The True Naruto Uzumaki Namikaze.txt, There and Back Again, a Shinobi's Tale.txt, Through Demon Eyes.txt, Turning Over a New Leaf.txt], 1
 	> exit
+
+## TODO
+SearchEngine:
+ - написать документацию к классам
+ - немного рефакторинга
+ - реализовать возможность поиска по нескольким словам
