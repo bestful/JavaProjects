@@ -90,8 +90,9 @@
 		// Structure: map of word-(frequency-documents)
 		public class WFD extends TreeMap<String, FD> {}
 - Используем класс SearchEngine в пакете SearchEngine
-
+		SearchEngine se = new SearchEngine();
 		query = scan.next();
+		
 		if(query.equals("import")){
 			String dir = scan.next();
 			se = new SearchEngine(dir);
@@ -100,20 +101,20 @@
 		}
 		else if(query.equals("find")){
 			if(se != null){
-			String word = scan.next();
-			FD fd = se.getOrderedFD(word);
-			if(fd == null || fd.isEmpty()){
-				System.out.println(ots + "Word is not found");
-			}
-			else{
-				for(Map.Entry me : fd.entrySet()){
-				System.out.format(ots + "%s, %d%n", me.getValue(), me.getKey());
+				String word = scan.next();
+				FD fd = se.getOrderedFD(word);
+				if(fd == null || fd.isEmpty()){
+					System.out.println(ots + "Word is not found");
+				}
+				else{
+					for(Map.Entry me : fd.entrySet()){
+						System.out.format(ots + "%s, %d%n", me.getValue(), me.getKey());
+					}
 				}
 			}
-		}
-		else{
-			System.out.println("Please import your documents");
-		}
+			else{
+				System.out.println("Please import your documents");
+			}
 		}
 
 ## Использование приложения
