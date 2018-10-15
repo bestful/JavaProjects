@@ -65,14 +65,14 @@
 			int i;
 
 			for(i=0;i<cols;i++){
-			stud.add(new Student(csv.get(i,0), Integer.parseInt(csv.get(i, 1))));
+				stud.add(new Student(csv.get(i,0), Integer.parseInt(csv.get(i, 1))));
 			}
 
 			QuickSorter qs = new QuickSorter(stud);
 			stud = qs.sort(new SortByMark());
 
 			for(i=0;i<cols;i++){
-			System.out.println(stud.get(i).getDescr());
+				System.out.println(stud.get(i).getDescr());
 			}
 		}
 - Индексатор содержит следующие структуры (при использовании необходимо импортировать пакет SearchEngine.Structures)
