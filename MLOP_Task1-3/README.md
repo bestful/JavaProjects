@@ -1,11 +1,119 @@
-﻿
-# MLOP_Task1-3
-Задачи:
- 1. Быстрая сортировка студентов из csv файла по оценке (Студент, оценка)
- 2. Выдача спиральной матрицы
- 3. Ранжирование документов по слову
 
-## Пример использования
+# MLOP_Task1-3
+# Компиляция и запуск
+Открываем в NetBeans IDE, компилируем. Для использования примера, копируем dist/Solution.jar в my-dist/Solution.jar. 
+# Задачи:
+## Быстрая сортировка
+Дано: список студентов в csv файле (студент, оценка)
+Вывести отсортированый (по убыванию) список студентов по оценке в консоль 
+## Спиральная матрица
+Дано: числа M, N - число строк и столбцов
+Вывести спиральную матрицу
+## Индексируемый поиск
+Дано: текстовые документы в папке
+Необходимо проиндексировать документы по частоте, сериализовать частоты в файл и по запросу выводить список документов по убыванию.
+# Примеры
+
+## Использование кода
+- Змейка
+
+	    public void demoSnake(){
+	        int M = scan.nextInt();
+	        int N = scan.nextInt();
+	        int[][] array = SnakeGen.getMatrix(M, N);
+	       
+	        int i, j;
+	        for(i=1;i<=M;i++){
+	            String out = "";
+	            for(j=1;j<=N;j++)
+	                out += array[i][j] + " ";
+	            System.out.println(out);
+	        }
+	    }
+- Класс студентов и компоратор (сортировщик)
+	
+		class Student{
+			public int mark;
+			public String last;
+			
+			Student(String last, int mark){
+				this.last = last;
+				this.mark = mark;
+			}
+
+			String getDescr(){
+				return "Last: " + last + ", mark: " + mark;
+			}
+		}
+
+		class SortByMark implements Comparator<Student>{
+			public int compare(Student a, Student b) {
+				return a.mark - b.mark;
+			}
+		}
+	
+- Сама сортировка
+
+		public void demoSorter() throws FileNotFoundException{
+			CsvReader csv = new CsvReader(new FileInputStream(new File(scan.nextLine().trim())) );
+			Vector<Student> stud = new Vector();
+
+			int cols = csv.getNumCols();
+			int i;
+
+			for(i=0;i<cols;i++){
+			stud.add(new Student(csv.get(i,0), Integer.parseInt(csv.get(i, 1))));
+			}
+
+			QuickSorter qs = new QuickSorter(stud);
+			stud = qs.sort(new SortByMark());
+
+			for(i=0;i<cols;i++){
+			System.out.println(stud.get(i).getDescr());
+			}
+		}
+- Индексатор содержит следующие структуры (при использовании необходимо импортировать пакет SearchEngine.Structures)
+
+		// Structure: list of documents
+		public class DS extends ArrayList<String> {}
+		
+		// Structure: map of frequency-documents
+		public class FD extends TreeMap<Integer, DS> {
+			public FD(){
+				super(Collections.reverseOrder());
+			}
+		}
+		
+		// Structure: map of word-(frequency-documents)
+		public class WFD extends TreeMap<String, FD> {}
+- Используем класс SearchEngine в пакете SearchEngine
+
+		query = scan.next();
+		if(query.equals("import")){
+			String dir = scan.next();
+			se = new SearchEngine(dir);
+			int numWords = se.getIndexer().getWfd().size();
+			System.out.format(ots + "Status: OK, %d words%n", numWords);
+		}
+		else if(query.equals("find")){
+			if(se != null){
+			String word = scan.next();
+			FD fd = se.getOrderedFD(word);
+			if(fd == null || fd.isEmpty()){
+				System.out.println(ots + "Word is not found");
+			}
+			else{
+				for(Map.Entry me : fd.entrySet()){
+				System.out.format(ots + "%s, %d%n", me.getValue(), me.getKey());
+				}
+			}
+		}
+		else{
+			System.out.println("Please import your documents");
+		}
+		}
+
+## Использование приложения
 
 	$ cd my-dist
 	$ java -jar "Solution.jar"
